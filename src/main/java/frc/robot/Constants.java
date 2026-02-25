@@ -112,6 +112,7 @@ public final class Constants {
     public static final double PROTO_LAUNCHER_POWER = -1;
 
     public static final double PROTO_SPIN_UP = 1;
+    public static final double AUTO_LAUNCH_SECONDS = 3;
   }
 
 

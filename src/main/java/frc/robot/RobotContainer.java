@@ -14,10 +14,16 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.AutoCenterSequence;
+
+
+
 import frc.robot.commands.ProtoLaunchSequence;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ProtoLauncher;
@@ -42,12 +48,21 @@ private final ProtoLauncher protoLauncherSubsystem = new ProtoLauncher();
   // The driver's controller
   //XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
+ // The autonomous chooser
+  private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    //autoChooser.setDefaultOption("Score only", new AutoLaunchSequence(m_robotDrive,protoLauncherSubsystem));
+    //autoChooser.addOption("Center robot",new TargetLock(driveSubsystem));
+    autoChooser.addOption("Auto Center",new AutoCenterSequence(m_robotDrive, protoLauncherSubsystem));
+//autoChooser.addOption("Auto Left",new AutoLeftSequence(m_robotDrive, protoLauncherSubsystem));
+//autoChooser.addOption("Auto Right",new AutoRightSequence(m_robotDrive, protoLauncherSubsystem));
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
@@ -60,6 +75,7 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true),
             m_robotDrive));
+             SmartDashboard.putData(autoChooser);
   }
 
   /**
@@ -134,6 +150,8 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+    //return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+     // An example command will be run in autonomous
+    return autoChooser.getSelected();
   }
 }
