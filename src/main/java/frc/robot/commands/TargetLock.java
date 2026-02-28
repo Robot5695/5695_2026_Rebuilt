@@ -14,6 +14,7 @@ public class TargetLock extends Command {
   /** Creates a new Drive. */
   DriveSubsystem driveSubsystem;
   boolean clockwise;
+  long lockTime;//time on target
 
   public TargetLock(DriveSubsystem driveSystem, boolean clockwise) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,6 +26,7 @@ public class TargetLock extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    lockTime = System.currentTimeMillis();//initialize lock time to start time
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,7 +51,14 @@ if (hasTarget)
 
   //positive is counter-clockwise, negative is clockwise
   double zSpeed = -tx/(50);
-  double xSpeed = -ty/(25);
+  if(Math.abs(tx)<5){
+    zSpeed = 0;
+  }
+  double xSpeed = -ty/(30);
+  if(Math.abs(ty)<5){
+    xSpeed=0;
+  }
+
   if (zSpeed > maxZ)
   {
     zSpeed = maxZ;
@@ -99,6 +108,13 @@ double tx = LimelightHelpers.getTX("");  // Horizontal offset from crosshair to 
 double ty = LimelightHelpers.getTY("");  // Vertical offset from crosshair to target in degrees
 double ta = LimelightHelpers.getTA("");  // Target area (0% to 100% of image)
 boolean hasTarget = LimelightHelpers.getTV(""); // Do you have a valid target?
-    return (Math.abs(tx)<2 && Math.abs(ty)<2 && hasTarget);
+    if((Math.abs(tx)<2 && Math.abs(ty)<2 && hasTarget)){
+      return (System.currentTimeMillis()-lockTime) > 500;//ensure stabilized target
+    }
+    else{
+      lockTime = System.currentTimeMillis();//reset time to current time
+    }
+  return false;
+
   }
 }
