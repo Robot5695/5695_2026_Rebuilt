@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.DriveSubsystem;
@@ -43,12 +44,12 @@ double tync = LimelightHelpers.getTYNC("");  // Vertical offset from principal p
 if (hasTarget)
 {
 
-  double maxZ = 0.1;
-  double maxX = 0.1;
+  double maxZ = 0.03;
+  double maxX = 0.03;
 
   //positive is counter-clockwise, negative is clockwise
-  double zSpeed = -ta*ty/(60);
-  double xSpeed = -tx/(10*ta);
+  double zSpeed = -tx/(50);
+  double xSpeed = -ty/(25);
   if (zSpeed > maxZ)
   {
     zSpeed = maxZ;
@@ -67,13 +68,16 @@ if (hasTarget)
   }
   //driveSubsystem.driveArcade(xSpeed,zSpeed);//Choose center coordinates
    driveSubsystem.drive(xSpeed,0,zSpeed,false);
+   //for troubleshooting
+   SmartDashboard.putNumber("xspeed", xSpeed);
+   SmartDashboard.putNumber("zSpeed", zSpeed);
 } else {
   if(clockwise){
     //driveSubsystem.driveArcade(0,-0.15); // Robot is rotating slowly if theres no target
-     driveSubsystem.drive(0,0,-0.15,false);
+     driveSubsystem.drive(0,0,-0.03,false);
   } else {
     //driveSubsystem.driveArcade(0,0.15); // Robot is rotating slowly if theres no target
-     driveSubsystem.drive(0,0,0.15,false);
+     driveSubsystem.drive(0,0,0.03,false);
   }
   
 }

@@ -70,9 +70,9 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getLeftY()/2, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getLeftX()/5, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getRightX()/5, OIConstants.kDriveDeadband),
                 true),
             m_robotDrive));
              SmartDashboard.putData(autoChooser);
