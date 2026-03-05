@@ -28,8 +28,9 @@ public class ProtoLauncher extends SubsystemBase {
 //private final TalonSRX feederRoller; //Rollers on back of prototype launcher
 //private final TalonSRX intakeRoller; //Orange star at center of launcher
 private final SparkFlex launcherRoller; //The launcher wheel
-private final SparkFlex launcherRoller2;
-private final SparkMax feederRoller; // REV Neo that feeds the launcher
+private final SparkFlex launcherRoller2; 
+// private final SparkMax feederRoller; // REV Neo that feeds the launcher
+private final SparkFlex feederRoller;
 private final Servo deflector;
 private final RelativeEncoder launcherEncoder;
 
@@ -46,7 +47,7 @@ private final RelativeEncoder launcherEncoder;
   launcherEncoder = launcherRoller.getEncoder();
 
   launcherRoller2 = new SparkFlex(PROTO_LAUNCHER_MOTOR2_ID, MotorType.kBrushless);
-  feederRoller = new SparkMax(PROTO_FEEDER_MOTOR_ID, MotorType.kBrushless);
+  feederRoller = new SparkFlex(PROTO_FEEDER_MOTOR_ID, MotorType.kBrushless);
   SparkBaseConfig LauncherRoller2Config = new SparkFlexConfig();
   LauncherRoller2Config.follow(launcherRoller);
   launcherRoller2.configure(LauncherRoller2Config, com.revrobotics.ResetMode.kResetSafeParameters
