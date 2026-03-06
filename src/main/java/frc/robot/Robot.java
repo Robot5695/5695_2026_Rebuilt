@@ -54,7 +54,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+      m_robotContainer.m_driverController.setRumble(RumbleType.kBothRumble, 0);
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -101,12 +103,18 @@ public class Robot extends TimedRobot {
       buzzerTimer = System.currentTimeMillis();
     }
     hubActive = isHubActive();
-    if(System.currentTimeMillis() -buzzerTimer > 1000){
+    if((System.currentTimeMillis() - buzzerTimer) > 1000){
       m_robotContainer.m_driverController.setRumble(RumbleType.kBothRumble, 0);
     }
-
+/* if(isHubActive() ){
+  m_robotContainer.m_driverController.setRumble(RumbleType.kBothRumble, 1);
+}
+else{
+  m_robotContainer.m_driverController.setRumble(RumbleType.kBothRumble, 0);
+} */
 
   }
+
 
   public boolean isHubActive() {
   Optional<Alliance> alliance = DriverStation.getAlliance();
