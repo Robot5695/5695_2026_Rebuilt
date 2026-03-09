@@ -21,8 +21,12 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.AutoCenterSequence;
+import frc.robot.commands.ClimbDown;
+import frc.robot.commands.ClimbUp;
 import frc.robot.commands.Intake;
+import frc.robot.commands.IntakeUp;
 import frc.robot.commands.ProtoLaunchSequence;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ProtoLauncher;
@@ -45,6 +49,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 private final ProtoLauncher protoLauncherSubsystem = new ProtoLauncher();
 private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   // The driver's controller
   //XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -101,9 +106,13 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
     */
     
     // Y button runs prototype launcher sequence
-    
+    m_driverController.x().whileTrue(m_robotDrive.run(()->m_robotDrive.setX()));
+
+    m_driverController.a().whileTrue(new ClimbUp(climberSubsystem));
+    m_driverController.b().whileTrue(new ClimbDown(climberSubsystem));
     m_driverController.y().whileTrue(new ProtoLaunchSequence(protoLauncherSubsystem));
     m_driverController.rightBumper().whileTrue(new Intake(intakeSubsystem));
+     m_driverController.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
     intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
     protoLauncherSubsystem.setDefaultCommand(protoLauncherSubsystem.run(()->protoLauncherSubsystem.stop()));
   }

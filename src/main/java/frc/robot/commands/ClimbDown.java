@@ -6,27 +6,28 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ClimberSubsystem;
 //import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 //import static frc.robot.Constants.FuelConstants.*;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class IntakeDown extends Command {
+public class ClimbDown extends Command {
   /** Creates a new Intake. */
 
-  IntakeSubsystem intake;
+  ClimberSubsystem climberSystem;
 
-  public IntakeDown(IntakeSubsystem intakeSystem) {
-    addRequirements(intakeSystem);
-    this.intake = intakeSystem;
+  public ClimbDown(ClimberSubsystem climberSystem) {
+    addRequirements(climberSystem);
+    this.climberSystem = climberSystem;
   }
 
   // Called when the command is initially scheduled. Set the rollers to the
   // appropriate values for intaking
   @Override
   public void initialize() {
-    intake.extend(true);
+    climberSystem.extend(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled. This
@@ -38,7 +39,7 @@ public class IntakeDown extends Command {
   // Called once the command ends or is interrupted. Stop the rollers
   @Override
   public void end(boolean interrupted) {
-    intake.stop();
+    
   }
 
   // Returns true when the command should end.

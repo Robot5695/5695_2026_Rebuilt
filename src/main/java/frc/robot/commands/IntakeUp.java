@@ -26,6 +26,7 @@ public class IntakeUp extends Command {
   // appropriate values for intaking
   @Override
   public void initialize() {
+    intake.setIntakeRoller(0);
     intake.extend(false);
   }
 
@@ -38,7 +39,7 @@ public class IntakeUp extends Command {
   // Called once the command ends or is interrupted. Stop the rollers
   @Override
   public void end(boolean interrupted) {
-    
+    intake.stop();
   }
 
   // Returns true when the command should end.
