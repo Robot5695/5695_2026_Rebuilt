@@ -113,7 +113,7 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
     m_driverController.y().whileTrue(new ProtoLaunchSequence(protoLauncherSubsystem));
     m_driverController.rightBumper().whileTrue(new Intake(intakeSubsystem));
      m_driverController.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
-    intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
+    //intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
     protoLauncherSubsystem.setDefaultCommand(protoLauncherSubsystem.run(()->protoLauncherSubsystem.stop()));
   }
 
