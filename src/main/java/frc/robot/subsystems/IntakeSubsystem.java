@@ -33,7 +33,7 @@ private final SparkFlex intake;
     // create brushed motors for each of the motors on the launcher mechanism
     /* intakeLauncherRoller = new SparkMax(INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushed);
     feederRoller = new SparkMax(FEEDER_MOTOR_ID, MotorType.kBrushed); */
-    extender = new DoubleSolenoid(PneumaticsModuleType.REVPH, 8, 9);
+    extender = new DoubleSolenoid(PneumaticsModuleType.REVPH, 10, 11);
  // intakeRoller = new TalonSRX(PROTO_INTAKE_MOTOR_ID);
  // feederRoller = new TalonSRX(PROTO_FEEDER_MOTOR_ID);
  intake = new SparkFlex(30, MotorType.kBrushless);
