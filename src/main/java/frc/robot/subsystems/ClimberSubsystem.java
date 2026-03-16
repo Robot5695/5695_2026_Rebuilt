@@ -32,7 +32,7 @@ private final DoubleSolenoid climber;
     // create brushed motors for each of the motors on the launcher mechanism
     /* intakeLauncherRoller = new SparkMax(INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushed);
     feederRoller = new SparkMax(FEEDER_MOTOR_ID, MotorType.kBrushed); */
-    climber = new DoubleSolenoid(PneumaticsModuleType.REVPH, 6, 7);
+    climber = new DoubleSolenoid(PneumaticsModuleType.REVPH, 8, 9);
  // intakeRoller = new TalonSRX(PROTO_INTAKE_MOTOR_ID);
  // feederRoller = new TalonSRX(PROTO_FEEDER_MOTOR_ID);
     

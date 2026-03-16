@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -62,6 +63,7 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    CameraServer.startAutomaticCapture();
 
     //autoChooser.setDefaultOption("Score only", new AutoLaunchSequence(m_robotDrive,protoLauncherSubsystem));
     //autoChooser.addOption("Center robot",new TargetLock(driveSubsystem));

@@ -30,7 +30,9 @@ public class ProtoLauncher extends SubsystemBase {
 private final SparkFlex launcherRoller; //The launcher wheel
 private final SparkFlex launcherRoller2; 
 // private final SparkMax feederRoller; // REV Neo that feeds the launcher
-private final SparkFlex feederRoller;
+private final SparkFlex feederRoller;//conveyor
+private final SparkMax indexRoller;//indexer axle
+
 private final Servo deflector;
 private final RelativeEncoder launcherEncoder;
 
@@ -45,7 +47,7 @@ private final RelativeEncoder launcherEncoder;
   launcherRoller = new SparkFlex(PROTO_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
   deflector = new Servo(0);
   launcherEncoder = launcherRoller.getEncoder();
-
+  indexRoller = new SparkMax(INDEX_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
   launcherRoller2 = new SparkFlex(PROTO_LAUNCHER_MOTOR2_ID, MotorType.kBrushless);
   feederRoller = new SparkFlex(PROTO_FEEDER_MOTOR_ID, MotorType.kBrushless);
   SparkBaseConfig LauncherRoller2Config = new SparkFlexConfig();
@@ -85,6 +87,10 @@ public void setFeederRoller(double voltage){
   feederRoller.set(voltage);
 }
 
+public void setIndexRoller(double voltage){
+  indexRoller.set(voltage);
+}
+
 public void setDeflector(double Angle){
   deflector.set(Angle);
 }
@@ -94,6 +100,7 @@ public void setDeflector(double Angle){
    // intakeRoller.set(TalonSRXControlMode.PercentOutput,0);
     launcherRoller.set(0);
     feederRoller.set(0);
+    indexRoller.set(0);
   }
 
   @Override

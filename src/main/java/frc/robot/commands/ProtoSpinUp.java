@@ -29,6 +29,7 @@ public class ProtoSpinUp extends Command {
     protoLauncherSubsystem
         .setLauncherRoller(
             SmartDashboard.getNumber("Proto launch roller value", PROTO_LAUNCHER_POWER));
+            protoLauncherSubsystem.setFeederRoller(PROTO_FEEDER_POWER_prelaunch);
     //protoLauncherSubsystem.setFeederRoller(SmartDashboard.getNumber("Launching spin-up feeder value", SPIN_UP_FEEDER_VOLTAGE));
   }
 

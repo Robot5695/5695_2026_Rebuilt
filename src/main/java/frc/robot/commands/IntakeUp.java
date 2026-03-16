@@ -27,7 +27,7 @@ public class IntakeUp extends Command {
   @Override
   public void initialize() {
     intake.setIntakeRoller(0);
-    intake.extend(false);
+    intake.extend(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled. This
@@ -39,12 +39,12 @@ public class IntakeUp extends Command {
   // Called once the command ends or is interrupted. Stop the rollers
   @Override
   public void end(boolean interrupted) {
-    intake.stop();
+    //intake.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
