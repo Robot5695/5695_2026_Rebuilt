@@ -18,7 +18,8 @@ public class AutoCenterSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new TargetLock(driveSubsystem, false),
+        // new TargetLock(driveSubsystem, false),
+        new BackUp(driveSubsystem).withTimeout(0.5),
         new ProtoSpinUp(fuelSubsystem).withTimeout(ProtoConstants.PROTO_SPIN_UP),
         new ProtoLaunch(fuelSubsystem).withTimeout(ProtoConstants.AUTO_LAUNCH_SECONDS));
 

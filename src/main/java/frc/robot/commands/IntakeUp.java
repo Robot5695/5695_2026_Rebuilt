@@ -27,7 +27,7 @@ public class IntakeUp extends Command {
   @Override
   public void initialize() {
     intake.setIntakeRoller(0);
-    intake.extend(false);
+    intake.extend(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled. This
