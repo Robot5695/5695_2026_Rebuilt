@@ -110,7 +110,7 @@ public final class Constants {
     // We need power values for the 3 motors
     public static final double PROTO_FEEDER_POWER = 1;
     public static final double PROTO_INTAKE_POWER= -1;
-    public static final double PROTO_INDEX_POWER = 1;
+    public static final double PROTO_INDEX_POWER = .5;
     public static final double PROTO_LAUNCHER_POWER = -1;
 public static final double PROTO_FEEDER_POWER_prelaunch= -0.1;
     public static final double PROTO_SPIN_UP = 1;

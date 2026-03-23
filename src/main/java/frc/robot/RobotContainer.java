@@ -54,6 +54,7 @@ private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   // The driver's controller
   //XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
+CommandXboxController m_driverController2 = new CommandXboxController(OIConstants.kDriverControllerPort);
  // The autonomous chooser
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
@@ -112,9 +113,9 @@ CommandXboxController m_driverController = new CommandXboxController(OIConstants
 
     m_driverController.a().whileTrue(new ClimbUp(climberSubsystem));
     m_driverController.b().whileTrue(new ClimbDown(climberSubsystem));
-    m_driverController.y().whileTrue(new ProtoLaunchSequence(protoLauncherSubsystem));
-    m_driverController.rightBumper().whileTrue(new Intake(intakeSubsystem));
-     m_driverController.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
+    m_driverController2.y().whileTrue(new ProtoLaunchSequence(protoLauncherSubsystem));
+    m_driverController2.rightBumper().whileTrue(new Intake(intakeSubsystem));
+     m_driverController2.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
     //intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
     protoLauncherSubsystem.setDefaultCommand(protoLauncherSubsystem.run(()->protoLauncherSubsystem.stop()));
   }
