@@ -26,6 +26,7 @@ import frc.robot.commands.ClimbDown;
 import frc.robot.commands.ClimbUp;
 import frc.robot.commands.Intake;
 import frc.robot.commands.IntakeUp;
+import frc.robot.commands.NeutralPickupScore;
 import frc.robot.commands.ProtoLaunchSequence;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -68,6 +69,7 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
 
     //autoChooser.setDefaultOption("Score only", new AutoLaunchSequence(m_robotDrive,protoLauncherSubsystem));
     //autoChooser.addOption("Center robot",new TargetLock(driveSubsystem));
+    autoChooser.addOption("Neutral Left", new NeutralPickupScore(m_robotDrive, protoLauncherSubsystem, intakeSubsystem));
     autoChooser.addOption("Auto Center",new AutoCenterSequence(m_robotDrive, protoLauncherSubsystem));
 //autoChooser.addOption("Auto Left",new AutoLeftSequence(m_robotDrive, protoLauncherSubsystem));
 //autoChooser.addOption("Auto Right",new AutoRightSequence(m_robotDrive, protoLauncherSubsystem));
@@ -81,7 +83,7 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
                 -MathUtil.applyDeadband(m_driverController.getLeftY()/2, OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX()/5, OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX()/5, OIConstants.kDriveDeadband),
-                true),
+                false),
             m_robotDrive));
              SmartDashboard.putData(autoChooser);
   }
@@ -138,9 +140,9 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+        List.of(new Translation2d(1, 0), new Translation2d(2, 0)),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(3, 0, new Rotation2d(0)),
+        new Pose2d(3, -0.5, new Rotation2d(-Math.PI/4)),
         config);
 
     var thetaController = new ProfiledPIDController(

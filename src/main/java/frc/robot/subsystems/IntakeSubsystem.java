@@ -13,7 +13,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,6 +29,8 @@ public class IntakeSubsystem extends SubsystemBase {
 //private final TalonSRX intakeRoller; //Orange star at center of launcher
 private final DoubleSolenoid extender; 
 private final SparkFlex intake;
+private final PneumaticHub pneumaticHub;
+private final Compressor compressor;
 
   /** Creates a new CANBallSubsystem. */
   public IntakeSubsystem() {
@@ -37,7 +41,8 @@ private final SparkFlex intake;
  // intakeRoller = new TalonSRX(PROTO_INTAKE_MOTOR_ID);
  // feederRoller = new TalonSRX(PROTO_FEEDER_MOTOR_ID);
  intake = new SparkFlex(30, MotorType.kBrushless);
-    
+    pneumaticHub = new PneumaticHub(2);
+    compressor = new Compressor(2, PneumaticsModuleType.REVPH);
     // put default values for various fuel operations onto the dashboard
     // all commands using this subsystem pull values from the dashbaord to allow
     // you to tune the values easily, and then replace the values in Constants.java

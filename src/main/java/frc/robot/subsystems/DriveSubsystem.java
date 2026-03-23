@@ -179,7 +179,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The turn rate of the robot, in degrees per second
    */
   public double getTurnRate() {
-    return m_gyro.getAngularVelocityXDevice();
+    return m_gyro.getAngularVelocityXDevice().getValueAsDouble();
     //return m_gyro.getRate(IMUAxis.kZ) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 }
