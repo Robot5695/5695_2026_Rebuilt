@@ -28,6 +28,7 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.IntakeUp;
 import frc.robot.commands.NeutralPickupScore;
 import frc.robot.commands.ProtoLaunchSequence;
+import frc.robot.commands.RightSideAuto;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -70,6 +71,8 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
     //autoChooser.setDefaultOption("Score only", new AutoLaunchSequence(m_robotDrive,protoLauncherSubsystem));
     //autoChooser.addOption("Center robot",new TargetLock(driveSubsystem));
     autoChooser.addOption("Neutral Left", new NeutralPickupScore(m_robotDrive, protoLauncherSubsystem, intakeSubsystem));
+    autoChooser.addOption("Neutral Right", new RightSideAuto(m_robotDrive, protoLauncherSubsystem, intakeSubsystem));
+    
     autoChooser.addOption("Auto Center",new AutoCenterSequence(m_robotDrive, protoLauncherSubsystem));
 //autoChooser.addOption("Auto Left",new AutoLeftSequence(m_robotDrive, protoLauncherSubsystem));
 //autoChooser.addOption("Auto Right",new AutoRightSequence(m_robotDrive, protoLauncherSubsystem));

@@ -25,9 +25,9 @@ import frc.robot.subsystems.ProtoLauncher;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class NeutralPickupScore extends SequentialCommandGroup {
+public class RightSideAuto extends SequentialCommandGroup {
   /** Creates a new NeutralPickupScore. */
-  public NeutralPickupScore(DriveSubsystem m_robotDrive, ProtoLauncher fuelSubsystem, IntakeSubsystem intakeSubsystem) {
+  public RightSideAuto(DriveSubsystem m_robotDrive, ProtoLauncher fuelSubsystem, IntakeSubsystem intakeSubsystem) {
     // Add your commands in the addCommands() call, e.g.
     // Create config for trajectory
     TrajectoryConfig configslow = new TrajectoryConfig(
@@ -52,23 +52,23 @@ public class NeutralPickupScore extends SequentialCommandGroup {
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(2, 0),new Translation2d(4, -1)/* ,
+        List.of(new Translation2d(2, 0),new Translation2d(4, 1)/* ,
         new Translation2d(1,0),
         new Translation2d(0,0),
         new Translation2d(-1,0),
         new Translation2d(-1,-3) */),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(4, -2, new Rotation2d(-Math.PI/4)),
+        new Pose2d(4, 2, new Rotation2d(Math.PI/4)),
         configslow);
 
         // Motion from neutral zone to left trench
     Trajectory neutral_to_left_trench = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
-        new Pose2d(4, -1, new Rotation2d(0)),
+        new Pose2d(4, 1, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(1.5, 0.9) ,new Translation2d(-1, 0)),
+        List.of(new Translation2d(1.5, -0.9) ,new Translation2d(-1, 0)),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(-1.1, -0.7, new Rotation2d(-Math.PI/4)),
+        new Pose2d(-1.1, 0.7, new Rotation2d(Math.PI/4)),
         configfast);
 
         
