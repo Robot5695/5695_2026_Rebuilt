@@ -26,7 +26,7 @@ public class Intake extends Command {
   // appropriate values for intaking
   @Override
   public void initialize() {
-    intake.setIntakeRoller(0.5);
+    //intake.setIntakeRoller(0.5);
     intake.extend(false);
     /* fuelSubsystem
         .setIntakeLauncherRoller(SmartDashboard.getNumber("Intaking intake roller value", INTAKING_INTAKE_VOLTAGE));
