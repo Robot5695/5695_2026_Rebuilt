@@ -24,7 +24,8 @@ public class EjectFuel extends Command {
   @Override
   public void initialize() {
     intakeSubsystem.setIntakeRoller(-0.5);
-    protoLauncher.setFeederRoller(0.5);
+    protoLauncher.setFeederRoller(-0.5);
+    protoLauncher.setIndexRoller(-0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,6 +37,7 @@ public class EjectFuel extends Command {
   public void end(boolean interrupted) {
     intakeSubsystem.setIntakeRoller(0);
     protoLauncher.setFeederRoller(0);
+    protoLauncher.setIndexRoller(0);
   }
 
   // Returns true when the command should end.

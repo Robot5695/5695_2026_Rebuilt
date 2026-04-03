@@ -24,6 +24,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.AutoCenterSequence;
 import frc.robot.commands.ClimbDown;
 import frc.robot.commands.ClimbUp;
+import frc.robot.commands.EjectFuel;
 import frc.robot.commands.Intake;
 import frc.robot.commands.IntakeUp;
 import frc.robot.commands.NeutralPickupScore;
@@ -126,7 +127,8 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
      m_driverController2.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
      //intake power on trigger
     m_driverController2.a().whileTrue(intakeSubsystem.run(() -> intakeSubsystem.setIntakeRoller(0.5)));
-    //intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
+    m_driverController2.b().whileTrue(new EjectFuel(intakeSubsystem,protoLauncherSubsystem));
+    intakeSubsystem.setDefaultCommand(intakeSubsystem.run(()->intakeSubsystem.stop()));    
     protoLauncherSubsystem.setDefaultCommand(protoLauncherSubsystem.run(()->protoLauncherSubsystem.stop()));
   }
 
