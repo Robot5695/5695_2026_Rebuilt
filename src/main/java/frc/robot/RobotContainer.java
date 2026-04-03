@@ -123,8 +123,8 @@ CommandXboxController m_driverController2 = new CommandXboxController(OIConstant
     m_driverController.a().whileTrue(new ClimbUp(climberSubsystem));
     m_driverController.b().whileTrue(new ClimbDown(climberSubsystem));
     m_driverController2.y().whileTrue(new ProtoLaunchSequence(protoLauncherSubsystem));
-    m_driverController2.rightBumper().whileTrue(new Intake(intakeSubsystem));
-     m_driverController2.leftBumper().whileTrue(new IntakeUp(intakeSubsystem));
+    m_driverController2.rightBumper().whileTrue(intakeSubsystem.run(()->intakeSubsystem.extend(false)));
+     m_driverController2.leftBumper().whileTrue(intakeSubsystem.run(()->intakeSubsystem.extend(true)));
      //intake power on trigger
     m_driverController2.a().whileTrue(intakeSubsystem.run(() -> intakeSubsystem.setIntakeRoller(0.5)));
     m_driverController2.b().whileTrue(new EjectFuel(intakeSubsystem,protoLauncherSubsystem));

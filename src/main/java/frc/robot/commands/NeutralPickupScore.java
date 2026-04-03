@@ -104,9 +104,11 @@ public class NeutralPickupScore extends SequentialCommandGroup {
     addCommands(
       //deploy intake
       new Intake(intakeSubsystem).withTimeout(0.5),
+      
       //drive to neutral zone balls
       left_trench_to_neutral_command,
       neutral_to_left_trench_command.andThen(() -> m_robotDrive.drive(0, 0, 0, false)),
+      
       //target lock
       //new TargetLock(m_robotDrive,false),
       //spin

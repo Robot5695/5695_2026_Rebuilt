@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants.AutoConstants;
@@ -104,9 +105,11 @@ public class RightSideAuto extends SequentialCommandGroup {
     addCommands(
       //deploy intake
       new Intake(intakeSubsystem).withTimeout(0.5),
+      
       //drive to neutral zone balls
       left_trench_to_neutral_command,
       neutral_to_left_trench_command.andThen(() -> m_robotDrive.drive(0, 0, 0, false)),
+      
       //target lock
       //new TargetLock(m_robotDrive,false),
       //spin
