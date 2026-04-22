@@ -15,6 +15,7 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants.AutoConstants;
@@ -45,7 +46,7 @@ public class AutoCenterSequence extends SequentialCommandGroup {
         // Pass through these two interior waypoints, making an 's' curve path
         List.of(new Translation2d(-1, 0) ,new Translation2d(-2, 0)),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(-2.44, 0, new Rotation2d(Math.PI)),
+        new Pose2d(-2.44, 0, new Rotation2d(0)),
         configslow);
 
            SwerveControllerCommand back_up_command = new SwerveControllerCommand(
@@ -66,7 +67,8 @@ public class AutoCenterSequence extends SequentialCommandGroup {
        // new BackUp(driveSubsystem).withTimeout(ProtoConstants.AUTO_BACKUP_SECONDS),
       //back up
         
-        back_up_command.andThen(() -> driveSubsystem.drive(0, 0, 0, false)),
+        //back_up_command.andThen(() -> driveSubsystem.drive(0, 0, 0, false)),
+        new RunCommand(()->driveSubsystem.drive(-0.1, 0, 0, false), driveSubsystem).withTimeout(0.5).andThen(() -> driveSubsystem.drive(0, 0, 0, false)),
         new ProtoSpinUp(fuelSubsystem).withTimeout(ProtoConstants.PROTO_SPIN_UP),
         new ProtoLaunch(fuelSubsystem).withTimeout(ProtoConstants.AUTO_LAUNCH_SECONDS)
         );

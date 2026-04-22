@@ -25,8 +25,8 @@ public final class Constants {
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
-    public static final double kMaxSpeedMetersPerSecond = 4.8;
-    public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    public static final double kMaxSpeedMetersPerSecond = 1;
+    public static final double kMaxAngularSpeed = 1 * Math.PI; // radians per second
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(26.5);
@@ -105,8 +105,8 @@ public final class Constants {
   public static final class ProtoConstants{
     // Constants value for prototype launcher motors
     public static final int PROTO_FEEDER_MOTOR_ID = 7;
-    public static final int PROTO_LAUNCHER_MOTOR_ID = 8;
-    public static final int PROTO_LAUNCHER_MOTOR2_ID = 9;
+    public static final int PROTO_LAUNCHER_MOTOR_ID = 4;
+    public static final int PROTO_LAUNCHER_MOTOR2_ID = 4;
     public static final int INDEX_LAUNCHER_MOTOR_ID = 18;
     // public static final int PROTO_INTAKE_MOTOR_ID = 9;
 
@@ -114,8 +114,8 @@ public final class Constants {
     public static final double PROTO_FEEDER_POWER = 1;
     public static final double PROTO_INTAKE_POWER= -1;
     public static final double PROTO_INDEX_POWER = .5;
-    public static final double PROTO_LAUNCHER_POWER = -1;
-public static final double PROTO_FEEDER_POWER_prelaunch= -0.1;
+    public static final double PROTO_LAUNCHER_POWER = -0.5;
+public static final double PROTO_FEEDER_POWER_prelaunch= -1;
     public static final double PROTO_SPIN_UP = 1;
     public static final double AUTO_LAUNCH_SECONDS = 10;
   }
